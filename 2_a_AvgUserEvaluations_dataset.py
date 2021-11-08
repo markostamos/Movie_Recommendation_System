@@ -1,11 +1,8 @@
+"""Δημιουργεί avg Evaluations του κάθε χρήστη για κάθε είδος ταινίας"""
 import pandas as pd
 import os
 
-#Η 3η άσκηση έχει χωριστεί σε κομμάτια  λόγω ταχύτητας.
-#Η ask3_a δημιουργεί απλώς το csv αρχείο με τις μέσες βαθμολογίες του κάθε χρήστη
-#για κάθε είδος ταινίας.
-#Στο source/datesets έχουμε συμπεριλάβει το αποτέλεσμα αυτού του script "averageRatings.csv"
-#Οπότε δεν χρειάζεται να τρέξει κατα την διόρθωση.
+
 def load_data():
     curdir = os.path.dirname(__file__)
     movies = pd.read_csv(curdir+"/datasets/movies.csv")

@@ -8,11 +8,7 @@ import numpy as np
 from sklearn.model_selection import train_test_split
 import matplotlib.pyplot as plt
 
-#Το 2ο κομμάτι δημιουργεί τα νευρωνικά δίκτυα (ένα για κάθε χρήστη)
-#χρησιμοποιώντας το dataset που δημιουργήθηκε στο ask4_a.
-#Για ευκολία στην διόρθωση στο source/models θα υπάρχουν τα πρώτα 5-10 μοντέλα 
-#(όσα περισσότερα μας αφήσει το eclass να ανεβάσουμε(max 100mb) όστε να μην χρειαστεί να τρέξει
-#το Script αυτό καθώς παίρνει αρκετό χρόνο (5-10 λεπτά  για όλα τα νευρωνικά).
+
 
 def load_csv(csv_name):
     curdir = os.path.dirname(__file__)
@@ -39,15 +35,10 @@ if __name__=="__main__":
     #για κάθε έναν απο τους 671 χρήστες
     for i in range(1,672):
         
-        #δημιουργεί το training dataset
         X,y =getUserTrainData(i,ratings,movies)
-        #κανονικοποιεί την είσοδο
+  
         X = keras.utils.normalize(X,axis=1)
-        #ο κώδικας σε σχόλια είναι οι δοκιμές που κάναμε για επιλογή των παραμέτρων
-        #του νευρωνικού και για να αποφύγουμε όσο γίνεται το overfitting/underfitting.
-        #αφου επιλέχθηκαν όλες οι παράμετροι κατά την εκπαίδευση χρησιμοποιήσαμε όλα τα
-        #training data
-
+  
 
         #X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
         X_train = X
@@ -58,8 +49,7 @@ if __name__=="__main__":
         model.add(keras.layers.Dense(64,activation='relu'))
         model.add(keras.layers.Dense(32,activation='relu'))
         #1 έξοδος που αναπαριστά την βαθμολογία
-        #έγινε και δοκιμή να λυθεί το πρόβλημα με κατηγορίες για έξοδο
-        #δηλαδη απο 0.5 1 1.5 είτε 0,1,2,3,4,5 αλλά είχε χειρότερα αποτελέσματα.
+        #
         model.add(keras.layers.Dense(1))
         #επειδή επιλέχθηκε 1 έξοδος για loss function επιλέχθηκε το
         #mean_squared_error έναντι του mean_absolute_error ώστε να "τιμωρεί" το νευρωνικό παραπάνω για τιμές που απέχουν

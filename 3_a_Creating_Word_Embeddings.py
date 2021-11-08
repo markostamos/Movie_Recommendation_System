@@ -7,10 +7,6 @@ import nltk
 import string
 script_dir = os.path.dirname(__file__)
 os.chdir(script_dir)
-#H 4η άσκηση χωρίζεται και αυτή σε 3 κομμάτια
-#Σε αυτό το κομμάτι απλώς δημιουργείται το csv που περιέχει ως στήλες τα word embeddings
-#το csv που δημιουργείται εδώ "encodedMovies.csv" χρησιμοποιείται σε όλη την άσκηση 4
-#το αρχείο αυτό θα βρίσκεται στο source/datasets οπότε δεν χρειάζεται να τρέξει ούτε αυτό το script.
 
 def load_csv(csv_name):
     curdir = os.path.dirname(__file__)
@@ -29,12 +25,7 @@ def tokenize(title):
     tokens = [word.lower() for word in tokens if word.isalpha()]
     return tokens
 
-#δημιουργεί το μοντέλο των Word embeddings
-#Γενικά υπάρχουν ταινίες με περίεργους τίτλους με αποτέλεσμα να μην δημιουργούνται tokens
-#Σε αυτή την περίπτωση περνάει τον αρχικό τίτλο.
 
-#Το dataset είναι πολυ μικρό για word embeddigns ωστόσο  στο νευρωνικό 
-#το μήκος 100 για τα διανύσματα δίνει σχετικά καλά αποτελέσματα.
 def create_WE_model(movies):
     titles = movies["title"].values
     #Την πρ΄ωτη φορα πρέπει να τρέξουν
@@ -50,7 +41,7 @@ def create_WE_model(movies):
     model = Word2Vec(titleVec,min_count=1,size = 100)
     return model
 
-#επιστρέφει όλα τα genres
+
 def get_genres(movies):
     genres=[]
     for index,row in movies.iterrows():

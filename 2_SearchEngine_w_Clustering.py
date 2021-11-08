@@ -3,11 +3,7 @@ import pandas as pd
 import csv
 import os,sys,csv
 
-#Σε αυτό το script ουσιαστικά λύνεται η άσκηση 3.
-#Ο κώδικας είναι ολόιδιος με τον κώδικα της άσκησης 2 με την διαφορά ότι όταν ένας χρήστης
-#δεν έχει δει κάποια ταινία τότε αντι για N/A κοιτάμε τον cluster στον οποίο ανήκει ο χρ΄ήστης
-#και βρίσκουμε τον μέσο όρο των βαθμολογιών για αυτή την ταινία
-#αν και πάλι δεν έχουμε τιμές, αναγράφεται το N/A
+
 
 def load_data(csv_name,index_name):
   curdir = os.path.dirname(__file__)
@@ -163,8 +159,6 @@ def calculate_score(old_score,userEval,movieEval):
         return 6*old_score + 4*movieEval
 
 
-#To μόνο που αλλάζει εδώ είναι οτι αν δεν υπάρχει βαθμολογία του χρήστη για την ταινία
-#καλείται η συνάρτηση getClusterEval για να βρεθεί ο μέσος όρος των βαθμολογιών του cluster.
 def search_movie(phrase,userId,num=10):
     res = get_movies(phrase,num)
     if res["hits"]["total"]["value"]==0: return
